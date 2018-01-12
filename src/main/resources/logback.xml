@@ -1,0 +1,47 @@
+<configuration  scan="true" scanPeriod="30 seconds">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="XKJ_FRONT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>../logs/xkj-front.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 每天生成一个日志文件，保存30天的日志文件 -->
+            <fileNamePattern>../logs/xkj-front.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <!-- <fileNamePattern>/Users/chenjia/Downloads/xkj/logs/xkj-front.log.%d{yyyy-MM-dd}</fileNamePattern>-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %contextName %-5level [%logger] %X{LogCtx} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.cwlrdc.front" level="debug">
+        <appender-ref ref="XKJ_FRONT_FILE" />
+    </logger>
+
+
+    <appender name="ALL_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>../logs/all.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>../logs/all.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %contextName %-5level [%logger] %X{LogCtx} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="trace">
+        <appender-ref ref="ALL_LOG_FILE"/>
+    </root>
+</configuration>

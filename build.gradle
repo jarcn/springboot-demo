@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.org'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        maven { url "http://192.168.3.10:8081/nexus/content/repositories/snapshots" }
+        maven { url joyveb_repo }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven { url "http://192.168.3.10:8081/nexus/content/repositories/snapshots" }
+    maven { url joyveb_repo }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE'
+    compile 'org.projectlombok:lombok:1.16.18'
+}
