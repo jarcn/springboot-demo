@@ -4,7 +4,7 @@ import lombok.Data;
 
 
 @Data
-public class Department {
+public class Department implements java.io.Serializable {
 
     private Long id;
     private String name;
