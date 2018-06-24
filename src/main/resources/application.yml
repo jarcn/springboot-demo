@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testboot?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: mysql
+  redis:
+    host: 192.168.22.97
+    port: 6379
+    pool:
+      max-idle: 8
+      min-idle: 0
+      max-active: 8
+      max-wait: -1
+
+server:
+  port: 8080
+  context-path: /test-boot
+
+
+
+
