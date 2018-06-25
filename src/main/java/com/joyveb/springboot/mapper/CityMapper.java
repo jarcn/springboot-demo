@@ -25,7 +25,7 @@ public interface CityMapper {
      *
      * @param personDO
      */
-    @Insert("insert into city(province_id,city_name,description) values(#{provinceId},#{cityName}),#{description}")
+    @Insert("insert into city(id,province_id,city_name,description) values(#{id},#{provinceId},#{cityName},#{description})")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     void insert(City personDO);
 
@@ -61,7 +61,7 @@ public interface CityMapper {
      * @param id
      * @return
      */
-    @Select("select * from city where id=#{id}")
+    @Select("select id, province_id provinceId, city_name cityName, description from city where id=#{id}")
     City selectById(@Param("id") String id);
 
     /**

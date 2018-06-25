@@ -5,6 +5,7 @@ import com.joyveb.springboot.beans.Department;
 import com.joyveb.springboot.beans.Role;
 import com.joyveb.springboot.beans.User;
 import com.joyveb.springboot.redis.mapper.UserRedis;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,6 @@ import org.springframework.util.Assert;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {RedisConfig.class, UserRedis.class})

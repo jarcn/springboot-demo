@@ -1,10 +1,45 @@
+buildscript {
+    ext {
+        springIOVersion = '1.0.0.RELEASE'
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+        maven { url "http://repo.spring.io/release" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:${springIOVersion}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.org'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    baseName = 'springboot-demo'
+    version = '0.0.1'
+    manifest {
+        attributes "Manifest-Version": 1.0,
+                'Main-Class': 'com.joyveb.springboot.StarterApplication'
+    }
+}
 
 buildscript {
     ext {
@@ -28,6 +63,17 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:Brussels-SR6'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Brixton.SR4'
+    }
+}
+
+ext {
+    junitVersion = '4.12'
+}
+
 dependencies {
 
     compile 'org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE'
@@ -40,3 +86,4 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-test:1.5.9.RELEASE'
     testCompile 'org.springframework:spring-test:4.3.4.RELEASE'
 }
+

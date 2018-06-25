@@ -1,6 +1,7 @@
 package com.joyveb.springboot.ctrl;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.joyveb.springboot.beans.City;
 import com.joyveb.springboot.mapper.CityMapper;
@@ -32,9 +33,10 @@ public class CityController {
     @RequestMapping("/save")
     public String save() {
         City personDO = new City();
+        personDO.setId(UUID.randomUUID().toString());
         personDO.setProvinceId("13");
         personDO.setCityName("hk");
-        personDO.setDescription("chenjia");
+        personDO.setDescription("test spring boot");
         log.debug("插入数据");
         cityMapper.insert(personDO);
         log.debug("数据插入完成");
