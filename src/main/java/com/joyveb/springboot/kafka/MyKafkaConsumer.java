@@ -18,6 +18,7 @@ import java.util.Optional;
 @Component
 public class MyKafkaConsumer {
 
+    //监听多个topic,用逗号隔开
     @KafkaListener(topics = {"test"})
     public void listen(ConsumerRecord<?, ?> record) {
 

@@ -18,6 +18,8 @@ import java.util.UUID;
 @Component
 public class MyKafkaProducer {
 
+    private final String topic = "test";
+
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
@@ -26,9 +28,9 @@ public class MyKafkaProducer {
     //发送消息方法
     public void send() {
         MyMessage message = new MyMessage();
-        message.setId("KFK_"+System.currentTimeMillis());
+        message.setId("KFK_" + System.currentTimeMillis());
         message.setMsg(UUID.randomUUID().toString());
         message.setSendTime(new Date());
-        kafkaTemplate.send("test", gson.toJson(message));
+        kafkaTemplate.send(topic, gson.toJson(message));
     }
 }

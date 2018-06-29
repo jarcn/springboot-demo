@@ -44,6 +44,10 @@ server:
   port: 8081
   context-path: /test-boot
 
-
-
-
+#使用springboot默认日志 logback
+logging:
+  path: /Users/chenjia/IdeaProjects/springboot-demo
+  file: springboot-demo.log
+  level:
+    com.joyveb.springboot: debug
+    org.springframework.kafka: warn
