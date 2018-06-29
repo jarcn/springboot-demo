@@ -83,7 +83,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'org.projectlombok:lombok:1.16.18'
     compile 'org.springframework.kafka:spring-kafka:1.1.3.RELEASE'
-
+    compile 'io.dubbo.springboot:spring-boot-starter-dubbo:1.0.0'
 
     testCompile 'org.springframework.boot:spring-boot-test:1.5.9.RELEASE'
     testCompile 'org.springframework:spring-test:4.3.4.RELEASE'

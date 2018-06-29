@@ -1,9 +1,11 @@
 spring:
+  #mysql 配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.22.97:3306/testboot?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 123456
+  #redis 配置
   redis:
     host: 192.168.22.97
     port: 6379
@@ -12,6 +14,7 @@ spring:
       min-idle: 0
       max-active: 8
       max-wait: -1
+  #kafka 配置
   kafka:
     bootstrap-servers: 192.168.22.97:9092
     #生产者的配置，大部分我们可以使用默认的，这里列出几个比较重要的属性
@@ -39,15 +42,23 @@ spring:
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       #在/usr/local/etc/kafka/consumer.properties中有配置
       group-id: test-consumer-group
+  #Dubbo 服务提供者配置
+  dubbo:
+    application.name: provider
+    registry.address: zookeeper://192.168.22.97:2181
+    protocol.name: dubbo
+    protocol.port: 20889
+    scan: com.joyveb.springboot.dubbo
 
-server:
-  port: 8081
-  context-path: /test-boot
+  #应用配置
+  server:
+    port: 8088
+    context-path: /test-boot
 
-#使用springboot默认日志 logback
-logging:
-  path: /Users/chenjia/IdeaProjects/springboot-demo
-  file: springboot-demo.log
-  level:
-    com.joyveb.springboot: debug
-    org.springframework.kafka: warn
+  #使用springboot默认日志 logback
+  logging:
+    path: /var/log/dubbo/logs
+    file: springboot-demo.log
+    level:
+      com.joyveb.springboot: debug
+      org.springframework.kafka: warn
